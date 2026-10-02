@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Lam lai canh_02..05 bang LTX-2.5 dev int8 (canh_01 da xong), roi ghep video cuoi.
 set -uo pipefail
-cd /home/ai_ductran/video-hoat-hinh
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 T0=$(date +%s)
 for c in canh_02 canh_03 canh_04 canh_05; do
   echo "=========== $c  ($(date +%H:%M:%S)) ==========="

@@ -4,6 +4,18 @@
 
 # Video hoạt hình từ kịch bản + ảnh cảnh
 
+> **Cài trên máy mới** (clone ở thư mục nào cũng được, script tự tìm gốc repo):
+>
+> ```bash
+> bash cong_cu/cai_dat.sh                      # venv + torch cu128 + chatterbox + web + ffmpeg + ComfyUI
+> .venv/bin/python cong_cu/tao_admin.py        # tạo tài khoản admin + .bao_mat/video.key (giữ key cũ nếu có)
+> .venv/bin/python -m unittest discover -s tests
+> .venv/bin/python giao_dien/server.py
+> ```
+>
+> Chuyển từ máy cũ sang thì chép `.bao_mat/video.key` sang **trước** khi chạy `tao_admin.py`,
+> không thì video `.brd` cũ không giải mã được. Model (`models/`) tải bằng `cong_cu/tai_*.sh`.
+
 Làm video hoạt hình có thoại, **chạy hoàn toàn trên máy này**, không gửi gì ra mạng.
 
 Ba bước, theo đúng thứ tự này và **không được đảo**:

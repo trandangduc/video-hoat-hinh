@@ -6,7 +6,7 @@
 # model_xuong.py chuyen hai service Qwen <-> ComfyUI theo nut Bam cua chu may.
 # Script nay chi quan ly ComfyUI, khong tu tat cac dich vu khac.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 PORT=${COMFY_PORT:-8188}
 GPU=${CUDA_VISIBLE_DEVICES:-0}
 DUOI=$([ "$PORT" = "8188" ] && echo "" || echo "_$PORT")     # ban :8188 giu ten file cu

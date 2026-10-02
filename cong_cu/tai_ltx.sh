@@ -6,7 +6,7 @@
 # lan bi cat ngang, lam file phinh to hon kich thuoc that va vo header. Tai lai
 # tu dau an toan hon nhieu so voi tiet kiem vai phut.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 TK=$(cat ~/.cache/huggingface/token | tr -d '\n')
 say(){ echo "[$(date +%H:%M:%S)] $*"; }
 

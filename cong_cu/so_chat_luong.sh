@@ -2,7 +2,7 @@
 # Render CUNG mot canh, cung seed, khac so buoc / do phan giai -> giu lai tung
 # clip de so chat luong bang mat. Toc do da do o do_toc_do.sh.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh; cd "$D"
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}; cd "$D"
 mkdir -p logs/kiem/so
 for c in "20 832 480" "12 832 480" "8 832 480" "8 640 384"; do
   set -- $c

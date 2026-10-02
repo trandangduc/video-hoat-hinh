@@ -2,7 +2,7 @@
 # Tai model Wan 2.2 tu HuggingFace ve models/. Chay lai duoc: da co du byte thi bo qua,
 # tai do dang thi -C - tiep tuc. In tien do moi file (luat cung #6).
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 BASE=https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files
 say() { echo "[$(date +%H:%M:%S)] $*"; }
 

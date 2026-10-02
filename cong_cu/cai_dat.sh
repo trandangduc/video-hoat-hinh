@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # Cai toan bo moi truong cho pipeline. Chay lai duoc nhieu lan.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 export PATH=$HOME/.local/bin:$PATH
 export UV_HTTP_TIMEOUT=300
 say() { echo; echo "=========== [$(date +%H:%M:%S)] $* ==========="; }
 cd "$D"
 
 say "1/5  torch cu128 (sm_120) cho venv TTS"
+[ -x "$D/.venv/bin/python" ] || uv venv --python 3.11 "$D/.venv" 2>&1 | tail -1
 uv pip install --python "$D/.venv/bin/python" \
    --index-url https://download.pytorch.org/whl/cu128 \
    torch torchvision torchaudio 2>&1 | tail -5
@@ -19,9 +20,16 @@ uv pip install --python "$D/.venv/bin/python" \
 
 say "3/5  thu vien cho giao dien + ghep video"
 uv pip install --python "$D/.venv/bin/python" \
-   fastapi "uvicorn[standard]" python-multipart requests pillow soundfile 2>&1 | tail -3
+   fastapi "uvicorn[standard]" python-multipart requests pillow soundfile numpy \
+   "cryptography>=46,<48" httpx 2>&1 | tail -3
 
 say "4/5  ffmpeg static (khong co sudo nen khong apt duoc)"
+# may da co ffmpeg + ffprobe he thong thi tro link sang, khoi tai
+if [ ! -x "$D/cong_cu/bin/ffmpeg" ] && command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null; then
+  mkdir -p "$D/cong_cu/bin"
+  ln -sf "$(command -v ffmpeg)" "$D/cong_cu/bin/ffmpeg"
+  ln -sf "$(command -v ffprobe)" "$D/cong_cu/bin/ffprobe"
+fi
 if [ ! -x "$D/cong_cu/bin/ffmpeg" ]; then
   mkdir -p "$D/cong_cu/bin" /tmp/ffdl && cd /tmp/ffdl
   curl -sL -o ff.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz

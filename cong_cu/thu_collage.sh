@@ -4,7 +4,7 @@
 #   2) T2V   : LTX tu ve tu chu            -> ra/clip/collage_t2v.mp4
 #   3) I2V   : LTX lam chuyen dong tu anh  -> ra/clip/collage_i2v.mp4
 set -uo pipefail
-cd /home/ai_ductran/video-hoat-hinh
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 T0=$(date +%s)
 P=$(python3 -c "import json;d=json.load(open('vao/kich_ban_thu_collage_t2v.json',encoding='utf-8'));print(d['cau_hinh']['phong_cach_t2v']+': '+d['canh'][0]['ghi_chu'])")
 

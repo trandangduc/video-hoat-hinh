@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # T2V thuan (khong anh mau) 5 canh Dyatlov bang LTX-2.5 dev int8, roi ghep.
 set -uo pipefail
-cd /home/ai_ductran/video-hoat-hinh
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 KB=vao/kich_ban_t2v_full.json
 T0=$(date +%s)
 echo "=========== T2V 5 canh  ($(date +%H:%M:%S)) ==========="

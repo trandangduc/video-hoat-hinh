@@ -2,7 +2,7 @@
 # Do A/B: doi so buoc lay mau va do phan giai anh huong the nao den thoi gian.
 # Dung CUNG mot canh, cung seed -> khac biet chi den tu tham so.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 cd "$D"
 for c in "20 832 480" "12 832 480" "8 832 480" "20 640 384"; do
   set -- $c

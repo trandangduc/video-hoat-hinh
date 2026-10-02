@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Tai bo LTX-2.5 ban goc bf16 (khong nen) + cac phan con thieu.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 TK=$(cat ~/.cache/huggingface/token | tr -d '\n')
 B=https://huggingface.co/Lightricks/LTX-2.5/resolve/main
 

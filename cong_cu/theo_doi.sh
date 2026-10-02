@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Xem moi thu dang chay o mot cho.  Chay:  bash cong_cu/theo_doi.sh
 # Them -l de lap lai moi 5 giay:        bash cong_cu/theo_doi.sh -l
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 xem() {
   echo "================ $(date '+%H:%M:%S') ================"
   echo "-- GPU --"

@@ -10,7 +10,7 @@
 #   bash cong_cu/doi_ltx.sh --gpu 1                  # chi dung GPU1
 #   bash cong_cu/doi_ltx.sh --song-song              # bat buoc song song 2 GPU (mac dinh tu dong)
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 cd "$D"
 
 # --------------------------------------------------------------- doi so

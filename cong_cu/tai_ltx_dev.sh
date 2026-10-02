@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Tai ban DEV cua LTX-2.5 (khong distilled). Nhieu buoc lay mau hon -> it nhieu hon.
 set -uo pipefail
-D=/home/ai_ductran/video-hoat-hinh
+D=${D:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 TK=$(cat ~/.cache/huggingface/token | tr -d '\n')
 out="$D/models/diffusion_models/ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors"
 url="https://huggingface.co/Lightricks/LTX-2.5/resolve/main/diffusion_models/ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors"

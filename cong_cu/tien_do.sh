@@ -3,7 +3,7 @@
 #   bash cong_cu/tien_do.sh                 # log moi nhat, cac moc chinh
 #   bash cong_cu/tien_do.sh -t              # bam theo thoi gian thuc
 #   bash cong_cu/tien_do.sh logs/abc.log    # chi ro file log
-cd /home/ai_ductran/video-hoat-hinh
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 theo=0; log=""
 for a in "$@"; do case "$a" in -t) theo=1;; *) log="$a";; esac; done
 # Khong chi ro thi lay log RENDER moi nhat (bo comfy.log va log tai model)

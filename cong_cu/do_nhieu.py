@@ -11,7 +11,7 @@ import subprocess, sys, tempfile, os, glob
 import numpy as np
 from PIL import Image
 
-F = "/home/ai_ductran/video-hoat-hinh/cong_cu/bin/ffmpeg"
+F = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bin", "ffmpeg")
 
 
 def do(clip: str, moi: int = 2) -> dict:
