@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video hoạt hình</title>
+<style>
+:root{
+  --nen:#fbfbfa; --mat:#ffffff; --chu:#1b1b19; --mo:#6e6e6a;
+  --vien:#e6e5e1; --vien-dam:#d6d5d0; --nhan:#3d5afe; --nhan-mo:#eef0ff;
+  --xong:#2f9e5f; --loi:#cf4436; --cho:#c9c8c3;
+  --bo-goc:10px; --chu-may:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --nen:#141416; --mat:#1c1c1f; --chu:#ececea; --mo:#96958f;
+  --vien:#2b2b30; --vien-dam:#3a3a41; --nhan:#8899ff; --nhan-mo:#22243a;
+  --xong:#4cbd7d; --loi:#e4675a; --cho:#4a4a50;
+}}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--nen); color:var(--chu);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+
+/* ---------- khung ---------- */
+.thanh{
+  position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;
+  padding:14px 24px;background:color-mix(in srgb,var(--nen) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--vien);
+}
+.thanh h1{font-size:15px}
+.thanh .day{margin-left:auto;display:flex;align-items:center;gap:14px;
+  font-size:12.5px;color:var(--mo)}
+.khung{max-width:1240px;margin:0 auto;padding:24px;
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,1fr);gap:20px}
+@media(max-width:1000px){.khung{grid-template-columns:1fr}}
+.the{background:var(--mat);border:1px solid var(--vien);border-radius:var(--bo-goc)}
+.the>header{display:flex;align-items:center;gap:10px;padding:13px 16px;
+  border-bottom:1px solid var(--vien)}
+.the>header h2{font-size:13px;letter-spacing:.02em;text-transform:uppercase;color:var(--mo)}
+.the>header .phai{margin-left:auto;display:flex;gap:8px;align-items:center}
+.than{padding:16px}
+
+/* ---------- nut ---------- */
+.nut{
+  border:1px solid var(--vien-dam);background:var(--mat);color:var(--chu);
+  padding:7px 14px;border-radius:7px;cursor:pointer;font-size:13.5px;
+  transition:background .12s,border-color .12s,opacity .12s;white-space:nowrap;
+}
+.nut:hover:not(:disabled){background:color-mix(in srgb,var(--nhan) 7%,var(--mat));
+  border-color:var(--nhan)}
+.nut:disabled{opacity:.42;cursor:not-allowed}
+.nut.chinh{background:var(--nhan);border-color:var(--nhan);color:#fff;font-weight:500}
+.nut.chinh:hover:not(:disabled){opacity:.9;background:var(--nhan)}
+.nut.nho{padding:4px 9px;font-size:12px;border-radius:6px}
+.nut.pha{border-color:transparent;background:transparent;color:var(--mo)}
+.nut.pha:hover:not(:disabled){color:var(--chu);background:var(--nhan-mo);border-color:transparent}
+
+/* ---------- ba buoc ---------- */
+.buoc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.o-buoc{border:1px solid var(--vien);border-radius:9px;padding:12px 13px;position:relative;
+  background:var(--nen)}
+.o-buoc .so{font:600 11px/1 var(--chu-may);color:var(--mo);letter-spacing:.06em}
+.o-buoc .ten{font-weight:600;font-size:14px;margin:5px 0 2px}
+.o-buoc .tom{font-size:12px;color:var(--mo)}
+.o-buoc .vach{height:3px;border-radius:2px;background:var(--vien);margin-top:10px;overflow:hidden}
+.o-buoc .vach i{display:block;height:100%;width:0;background:var(--xong);
+  transition:width .35s ease}
+.o-buoc[data-tt="chay"]{border-color:var(--nhan)}
+.o-buoc[data-tt="chay"] .vach i{background:var(--nhan);
+  animation:tho 1.3s ease-in-out infinite}
+@keyframes tho{50%{opacity:.45}}
+
+/* ---------- bang canh ---------- */
+.canh{border:1px solid var(--vien);border-radius:9px;margin-bottom:9px;overflow:hidden;
+  background:var(--nen)}
+.canh>.dong{display:flex;align-items:center;gap:12px;padding:10px 12px;cursor:pointer}
+.canh>.dong:hover{background:var(--nhan-mo)}
+.canh .hinh{width:64px;height:38px;border-radius:5px;object-fit:cover;flex:none;
+  background:var(--vien);border:1px solid var(--vien)}
+.canh .ten{font-weight:600;font-size:13.5px;font-family:var(--chu-may)}
+.canh .loi-thoai{font-size:12.5px;color:var(--mo);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;max-width:100%}
+.canh .giua{min-width:0;flex:1}
+.canh .cot{margin-left:auto;display:flex;gap:7px;align-items:center;flex:none}
+.canh .sua{display:none;padding:2px 12px 14px;border-top:1px solid var(--vien)}
+.canh.mo .sua{display:block}
+.truong{margin-top:11px}
+.truong label{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--mo);margin-bottom:4px}
+.truong input,.truong select,.truong textarea{
+  width:100%;padding:7px 9px;border:1px solid var(--vien-dam);border-radius:6px;
+  background:var(--mat);outline:none}
+.truong input:focus,.truong select:focus,.truong textarea:focus{border-color:var(--nhan)}
+.truong textarea{resize:vertical;min-height:56px;line-height:1.5}
+.doi{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+
+/* ---------- cham trang thai ---------- */
+.cham{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--mo)}
+.cham b{width:7px;height:7px;border-radius:50%;background:var(--cho);flex:none}
+.cham[data-co="1"] b{background:var(--xong)}
+.cham[data-co="1"]{color:var(--chu)}
+
+/* ---------- nhat ky ---------- */
+#nhatky{margin:0;height:390px;overflow:auto;padding:12px 14px;
+  font:12px/1.62 var(--chu-may);white-space:pre-wrap;word-break:break-word;
+  background:var(--nen);border-radius:0 0 var(--bo-goc) var(--bo-goc);color:var(--mo)}
+#nhatky .n{color:var(--chu)}
+#nhatky .x{color:var(--xong)}
+#nhatky .e{color:var(--loi)}
+
+/* ---------- linh tinh ---------- */
+.canh-bao{border:1px solid color-mix(in srgb,var(--loi) 45%,var(--vien));
+  background:color-mix(in srgb,var(--loi) 8%,transparent);
+  border-radius:8px;padding:10px 13px;font-size:13px;margin-bottom:14px}
+.canh-bao ul{margin:6px 0 0;padding-left:18px}
+.tha{border:1.5px dashed var(--vien-dam);border-radius:8px;padding:14px;text-align:center;
+  font-size:12.5px;color:var(--mo);cursor:pointer;transition:.15s}
+.tha:hover,.tha.tren{border-color:var(--nhan);background:var(--nhan-mo);color:var(--chu)}
+.gpu{font:11.5px/1 var(--chu-may)}
+.gpu span{color:var(--chu)}
+video{width:100%;border-radius:8px;display:block;background:#000}
+.trong{color:var(--mo);font-size:13px;text-align:center;padding:22px 0}
+.hang{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.ghi{font-size:12px;color:var(--mo);margin-top:9px}
+
+/* ---------- chon kich ban ---------- */
+.chon-kb{padding:5px 9px;border:1px solid var(--vien-dam);border-radius:7px;
+  background:var(--mat);outline:none;font-size:12.5px;max-width:230px}
+.chon-kb:focus{border-color:var(--nhan)}
+
+/* ---------- phong cach t2v ---------- */
+.nhan{font:600 10.5px/1 var(--chu-may);letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 7px;border-radius:5px;background:var(--nhan-mo);color:var(--nhan);
+  border:1px solid color-mix(in srgb,var(--nhan) 30%,transparent)}
+#phong-cach{width:100%;padding:11px 12px;border:1px solid var(--vien-dam);
+  border-radius:8px;background:var(--nen);outline:none;resize:vertical;
+  min-height:92px;line-height:1.6;font-size:13.5px}
+#phong-cach:focus{border-color:var(--nhan);background:var(--mat)}
+#phong-cach::placeholder{color:var(--cho)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid var(--vien-dam);background:var(--mat);border-radius:999px;
+  padding:5px 12px;font-size:12px;cursor:pointer;color:var(--mo);transition:.13s}
+.chip:hover{border-color:var(--nhan);color:var(--nhan);background:var(--nhan-mo)}
+.chip[data-chon="1"]{border-color:var(--nhan);color:var(--nhan);background:var(--nhan-mo)}
+
+/* ---------- tai ve ---------- */
+.nut.tai{background:var(--xong);border-color:var(--xong);color:#fff;font-weight:500;
+  text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.nut.tai:hover{opacity:.9}
+
+/* ---------- viec chay nen ---------- */
+.nen-bao{display:flex;align-items:center;gap:9px;padding:9px 12px;margin-bottom:12px;
+  border-radius:8px;font-size:12.5px;
+  border:1px solid color-mix(in srgb,var(--nhan) 35%,var(--vien));
+  background:color-mix(in srgb,var(--nhan) 7%,transparent)}
+.nen-bao .dong-ho{margin-left:auto;font:12px/1 var(--chu-may);color:var(--mo)}
+</style>
+</head>
+<body>
+
+<div class="thanh">
+  <h1>Video hoạt hình</h1>
+  <span class="cham" id="tt-comfy"><b></b>ComfyUI</span>
+  <select class="chon-kb" id="chon-kb-dung" title="Kịch bản đang mở"></select>
+  <div class="day">
+    <span class="gpu" id="gpu"></span>
+  </div>
+</div>
+
+<div class="khung">
+  <!-- ================= cot trai ================= -->
+  <div>
+    <div class="the" style="margin-bottom:20px">
+      <header>
+        <h2>Quy trình</h2>
+        <div class="phai">
+          <button class="nut pha nho" id="nut-lam-lai" title="Bỏ qua file đã có, làm lại từ đầu">Làm lại từ đầu</button>
+          <button class="nut" id="nut-dung" disabled>Dừng</button>
+          <button class="nut chinh" id="nut-chay">Chạy tất cả</button>
+        </div>
+      </header>
+      <div class="than">
+        <div class="buoc">
+          <div class="o-buoc" id="b-tts">
+            <div class="so">BƯỚC 1</div><div class="ten">Tiếng</div>
+            <div class="tom">Lời thoại thành file .wav</div>
+            <div class="vach"><i></i></div>
+          </div>
+          <div class="o-buoc" id="b-hoat_hinh">
+            <div class="so">BƯỚC 2</div><div class="ten">Hình</div>
+            <div class="tom">Ảnh + tiếng thành clip khớp miệng</div>
+            <div class="vach"><i></i></div>
+          </div>
+          <div class="o-buoc" id="b-ghep">
+            <div class="so">BƯỚC 3</div><div class="ten">Ghép</div>
+            <div class="tom">Nối clip, thêm phụ đề</div>
+            <div class="vach"><i></i></div>
+          </div>
+        </div>
+        <div class="ghi">Tiếng phải làm trước hình: độ dài audio quyết định độ dài clip.</div>
+      </div>
+    </div>
+
+    <div class="the" style="margin-bottom:20px">
+      <header>
+        <h2>Phong cách tự vẽ</h2>
+        <div class="phai">
+          <span class="nhan">t2v</span>
+          <button class="nut nho chinh" id="nut-luu-pc" disabled>Lưu</button>
+        </div>
+      </header>
+      <div class="than">
+        <p class="ghi" style="margin:0 0 10px">
+          Câu này được ghép vào <b>mọi</b> cảnh <code>t2v</code> — nó là thứ giữ các
+          cảnh trông giống nhau. Tả nhân vật càng kỹ thì càng đỡ trôi.
+          Để trống thì dùng phong cách bảng trắng mặc định.
+        </p>
+        <textarea id="phong-cach" spellcheck="false"
+          placeholder="ví dụ: flat vector cartoon narrator in a conical straw hat and pink floral shirt, clean black outlines, warm archive room"></textarea>
+        <div class="chips" id="chips-pc"></div>
+      </div>
+    </div>
+
+    <div class="the">
+      <header>
+        <h2>Cảnh</h2>
+        <div class="phai">
+          <button class="nut nho" id="nut-them">Thêm cảnh</button>
+          <button class="nut nho chinh" id="nut-luu" disabled>Lưu kịch bản</button>
+        </div>
+      </header>
+      <div class="than">
+        <div id="van-de"></div>
+        <div id="ds-canh"></div>
+        <div class="hang" style="margin-top:14px">
+          <div class="tha" id="tha-anh" style="flex:1">Kéo ảnh cảnh vào đây, hoặc bấm để chọn</div>
+          <div class="tha" id="tha-giong" style="flex:1">Giọng mẫu để nhân bản (tuỳ chọn)</div>
+          <div class="tha" id="tha-kb" style="flex:1">Kịch bản .txt có timecode, hoặc .json</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= cot phai ================= -->
+  <div>
+    <div class="the" style="margin-bottom:20px">
+      <header>
+        <h2>Nhật ký</h2>
+        <div class="phai"><span class="cham" id="tt-viec"><b></b><span>rảnh</span></span></div>
+      </header>
+      <div class="than" id="o-nen" hidden style="padding:12px 14px 0"></div>
+      <pre id="nhatky"></pre>
+    </div>
+
+    <div class="the">
+      <header id="dau-ket-qua" style="cursor:pointer" title="Bấm để quay lại video cuối"><h2>Kết quả</h2>
+        <div class="phai">
+          <span id="dai-video" style="font-size:12px;color:var(--mo)"></span>
+          <a class="nut tai nho" id="nut-tai" href="/tai-ve" download hidden>Tải về</a>
+        </div>
+      </header>
+      <div class="than" id="o-ket-qua"><div class="trong">Chưa có video cuối.</div></div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="chon-anh" accept="image/*" multiple hidden>
+<input type="file" id="chon-giong" accept="audio/*" hidden>
+<input type="file" id="chon-kb" accept=".txt,.json" hidden>
+
+<script>
+const $ = s => document.querySelector(s);
+let TT = null, MO = new Set(), BAN = false;
+
+const HTML = s => (s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------------- trạng thái ---------------- */
+async function tai(){
+  TT = await (await fetch('/api/trang-thai')).json();
+  ve();
+}
+
+function ve(){
+  if(!TT) return;
+  $('#tt-comfy').dataset.co = TT.may.comfy ? '1' : '0';
+  $('#gpu').innerHTML = (TT.may.gpu || []).map(g =>
+    `GPU${g.so}${String(g.so)===String(TT.may.gpu_dung)?'*':''} <span>${(g.dung/1024).toFixed(1)}</span>/${(g.tong/1024).toFixed(0)}G`
+  ).join('&nbsp;&nbsp;');
+
+  const c = TT.canh || [];
+  const coThoai = c.filter(x => x.co_thoai);
+  vach('b-tts',       coThoai.filter(x => x.co_tieng).length, coThoai.length);
+  vach('b-hoat_hinh', c.filter(x => x.co_clip).length, c.length);
+  vach('b-ghep',      TT.video_cuoi ? 1 : 0, 1);
+
+  const chay = TT.viec.dang_chay;
+  $('#nut-chay').disabled = chay; $('#nut-dung').disabled = !chay;
+  $('#nut-them').disabled = chay; $('#nut-lam-lai').disabled = chay;
+  document.querySelectorAll('.o-buoc').forEach(e => e.removeAttribute('data-tt'));
+  if(chay){
+    const e = $('#b-' + TT.viec.ten); if(e) e.dataset.tt = 'chay';
+    if(TT.viec.ten === 'tat_ca') $('#b-tts').dataset.tt = 'chay';
+  }
+  const tv = $('#tt-viec');
+  tv.dataset.co = chay ? '1' : '0';
+  tv.querySelector('span').textContent = chay ? ('đang chạy: ' + TT.viec.ten) : 'rảnh';
+
+  veChonKichBan();
+  vePhongCach();
+  veBaoNen();
+  veVanDe();
+
+  // Chi ve lai khi du lieu that su doi. Ve lai vo co se ngat <video> dang phat
+  // va reset <audio> dang nghe -- poll 6s mot lan thi gan nhu khong xem duoc.
+  const kyCanh = JSON.stringify((TT.canh||[]).map(x =>
+    [x.id,x.anh,x.thoai,x.cam_xuc,x.kieu,x.ghi_chu,x.co_anh,x.co_tieng,x.co_clip,x.giay_tieng,x.giay_clip]));
+  if(kyCanh !== veCanh.ky){ veCanh.ky = kyCanh; veCanh(); }
+
+  const kyRa = JSON.stringify([TT.video_cuoi, TT.giay_video_cuoi]);
+  if(kyRa !== veKetQua.ky && !veKetQua.ghim){ veKetQua.ky = kyRa; veKetQua(); }
+}
+
+function vach(id, xong, tong){
+  const e = document.querySelector('#' + id + ' .vach i');
+  if(e) e.style.width = (tong ? xong / tong * 100 : 0) + '%';
+  const t = document.querySelector('#' + id + ' .tom');
+  if(t && !t.dataset.goc) t.dataset.goc = t.textContent;
+  if(t) t.textContent = tong ? `${xong}/${tong} · ${t.dataset.goc}` : t.dataset.goc;
+}
+
+function veVanDe(){
+  const v = TT.van_de || [];
+  $('#van-de').innerHTML = v.length
+    ? `<div class="canh-bao"><b>Cần sửa trước khi chạy</b><ul>${v.map(x=>`<li>${HTML(x)}</li>`).join('')}</ul></div>` : '';
+}
+
+function veCanh(){
+  const kho = TT.cam_xuc || [];
+  $('#ds-canh').innerHTML = (TT.canh || []).map((c, i) => `
+    <div class="canh ${MO.has(c.id)?'mo':''}" data-id="${HTML(c.id)}">
+      <div class="dong" data-mo="${HTML(c.id)}">
+        <img class="hinh" src="${c.co_anh ? '/media/anh/' + encodeURIComponent(c.anh) + '?v=' + Date.now() : ''}" alt="">
+        <div class="giua">
+          <div class="ten">${HTML(c.id)}</div>
+          <div class="loi-thoai">${c.co_thoai ? HTML(c.thoai) : '(cảnh không thoại)'}</div>
+        </div>
+        <div class="cot">
+          <span class="cham" data-co="1" style="opacity:.75">${
+            {ken_burns:'Ken Burns',i2v:'Wan I2V',s2v:'Wan S2V',ltx:'LTX tự vẽ',t2v:'T2V tự vẽ hết'}[c.kieu]||c.kieu}</span>
+          <span class="cham" data-co="${c.co_anh?1:0}"><b></b>ảnh</span>
+          <span class="cham" data-co="${c.co_tieng?1:0}"><b></b>tiếng${c.giay_tieng?' '+c.giay_tieng+'s':''}</span>
+          <span class="cham" data-co="${c.co_clip?1:0}"><b></b>clip${c.giay_clip?' '+c.giay_clip+'s':''}</span>
+        </div>
+      </div>
+      <div class="sua">
+        <div class="doi">
+          <div class="truong"><label>Mã cảnh</label><input data-o="${i}" data-k="id" value="${HTML(c.id)}"></div>
+          <div class="truong"><label>File ảnh</label><input data-o="${i}" data-k="anh" value="${HTML(c.anh)}"></div>
+        </div>
+        <div class="truong"><label>Lời thoại (tiếng Anh — để trống nếu cảnh không thoại)</label>
+          <textarea data-o="${i}" data-k="thoai">${HTML(c.thoai)}</textarea></div>
+        <div class="doi">
+          <div class="truong"><label>Cảm xúc</label>
+            <select data-o="${i}" data-k="cam_xuc">
+              ${kho.map(k=>`<option ${k===c.cam_xuc?'selected':''}>${k}</option>`).join('')}
+            </select></div>
+          <div class="truong"><label>Cách làm hình</label>
+            <select data-o="${i}" data-k="kieu">
+              ${(TT.kieu||['ken_burns','i2v','s2v']).map(k=>
+                `<option value="${k}" ${k===c.kieu?'selected':''}>${
+                  {ken_burns:'Ken Burns — ảnh trôi (nhanh nhất)',
+                   i2v:'Wan I2V — ảnh động thật (chậm)',
+                   s2v:'Wan S2V — khớp miệng (chậm nhất)',
+                   ltx:'LTX tự vẽ — vẽ lại từ ảnh + lồng tiếng TTS',
+                   t2v:'T2V tự vẽ toàn bộ — không cần ảnh, kể chuyện trắng (như thu_bangtrang)'}[k]||k}</option>`).join('')}
+            </select></div>
+        </div>
+        <div class="truong"><label>Chuyển động cho Wan (bỏ trống nếu dùng Ken Burns)</label>
+          <input data-o="${i}" data-k="ghi_chu" value="${HTML(c.ghi_chu)}"></div>
+        <div class="hang" style="margin-top:13px">
+          <button class="nut nho" data-chay="tts" data-canh="${HTML(c.id)}">Làm tiếng</button>
+          <button class="nut nho" data-chay="hoat_hinh" data-canh="${HTML(c.id)}">Làm clip</button>
+          ${c.co_tieng?`<audio controls src="/media/tieng/${encodeURIComponent(c.id)}.wav" style="height:30px"></audio>`:''}
+          ${c.co_clip?`<button class="nut nho pha" data-xem="${HTML(c.id)}">Xem clip</button>`:''}
+          <button class="nut nho pha" data-xoa="${i}" style="margin-left:auto">Xoá cảnh</button>
+        </div>
+      </div>
+    </div>`).join('') || '<div class="trong">Chưa có cảnh nào.</div>';
+}
+
+function veKetQua(){
+  const o = $('#o-ket-qua');
+  const mo = TT.mb_video_cuoi ? ` · ${TT.mb_video_cuoi} MB` : '';
+  $('#dai-video').textContent = TT.giay_video_cuoi ? TT.giay_video_cuoi + 's' + mo : '';
+  $('#nut-tai').hidden = !TT.video_cuoi;
+  // Ten file doi theo kich ban dang mo -> khong duoc ghim cung video_cuoi.mp4
+  o.innerHTML = TT.video_cuoi
+    ? `<video controls src="/media/ra/${encodeURIComponent(TT.ten_video_cuoi)}?v=${Date.now()}"></video>`
+    : '<div class="trong">Chưa có video cuối.</div>';
+}
+
+/* ---------------- kịch bản đang mở ---------------- */
+function veChonKichBan(){
+  const e = $('#chon-kb-dung');
+  const ky = JSON.stringify([TT.cac_kich_ban, TT.kich_ban_dang_dung]);
+  if(ky === veChonKichBan.ky) return;      // đừng vẽ lại khi đang mở dropdown
+  veChonKichBan.ky = ky;
+  e.innerHTML = (TT.cac_kich_ban || []).map(k =>
+    `<option value="${HTML(k.ten)}" ${k.ten===TT.kich_ban_dang_dung?'selected':''}>`
+    + `${HTML(k.nhan)} — ${k.so_canh} cảnh${k.kieu?' · '+HTML(k.kieu):''}</option>`).join('');
+}
+$('#chon-kb-dung').onchange = async e => {
+  if(BAN && !confirm('Kịch bản có thay đổi chưa lưu. Vẫn đổi?')){ veChonKichBan.ky=null; ve(); return; }
+  await fetch('/api/chon-kich-ban', {method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ten: e.target.value})});
+  BAN = false; MO.clear(); veCanh.ky = null; veKetQua.ky = null; veKetQua.ghim = false;
+  them('n', 'Đã đổi sang ' + e.target.value); tai();
+};
+
+/* ---------------- phong cách t2v ---------------- */
+const MAU_PC = [
+  ['Bảng trắng (mặc định)', ''],
+  ['Vector phẳng',
+   'flat vector cartoon animation, clean bold black outlines of even weight, '
+   + 'characters with simple rounded heads, visible eyes and mouth, clear hands '
+   + 'with distinct fingers, flat saturated fill colours with no gradients, '
+   + 'character large in frame from the knees up, simple uncluttered background, '
+   + 'soft even lighting'],
+  ['Tài liệu vẽ tay',
+   'hand-drawn documentary animation in thick black marker on plain cream paper, '
+   + 'bold confident ink strokes, human figures with a clear head, shoulders, torso, '
+   + 'arms and legs and simple facial features, figures large in frame and close to '
+   + 'camera, strong black-on-pale contrast, sparse background, no paper texture'],
+  ['Anime cel',
+   'soft anime cel animation, clean thin ink lines, characters with expressive eyes, '
+   + 'defined hair shapes and clear facial features, two-tone cel shading with hard '
+   + 'shadow edges, muted pastel palette, character framed from the chest up, '
+   + 'simple blurred background'],
+  ['Tranh sơn dầu',
+   'painterly oil-on-canvas animation, thick visible directional brush strokes, '
+   + 'figures with solid readable silhouettes and defined faces, rich saturated colour, '
+   + 'strong chiaroscuro lighting from one side, subject centred and large in frame, '
+   + 'loose impressionistic background'],
+  ['Nét chì',
+   'hand-drawn pencil animation on smooth paper, firm graphite lines of varying weight, '
+   + 'figures with clear anatomy and simple facial features, subject large and centred, '
+   + 'monochrome with one warm accent colour, clean negative space, no hatching noise'],
+];
+function vePhongCach(){
+  const o = $('#phong-cach');
+  if(document.activeElement !== o && !vePhongCach.ban)
+    o.value = (TT.cau_hinh && TT.cau_hinh.phong_cach_t2v) || '';
+  const ch = $('#chips-pc');
+  if(!ch.dataset.ve){
+    ch.dataset.ve = '1';
+    ch.innerHTML = MAU_PC.map((m,i) =>
+      `<button class="chip" data-mau="${i}">${HTML(m[0])}</button>`).join('');
+  }
+  ch.querySelectorAll('.chip').forEach(b =>
+    b.dataset.chon = (MAU_PC[+b.dataset.mau][1] === o.value) ? '1' : '0');
+}
+$('#phong-cach').addEventListener('input', () => {
+  vePhongCach.ban = true; $('#nut-luu-pc').disabled = false; vePhongCach();
+});
+$('#chips-pc').addEventListener('click', e => {
+  const b = e.target.closest('[data-mau]'); if(!b) return;
+  $('#phong-cach').value = MAU_PC[+b.dataset.mau][1];
+  vePhongCach.ban = true; $('#nut-luu-pc').disabled = false; vePhongCach();
+});
+$('#nut-luu-pc').onclick = async () => {
+  TT.cau_hinh.phong_cach_t2v = $('#phong-cach').value.trim();
+  if(await luuKichBan()){
+    vePhongCach.ban = false; $('#nut-luu-pc').disabled = true;
+    them('x', 'Đã lưu phong cách.');
+  }
+};
+
+/* ---------------- việc chạy nền ---------------- */
+function veBaoNen(){
+  const o = $('#o-nen'), v = TT.viec || {};
+  if(!v.dang_chay){ o.hidden = true; return; }
+  const ph = Math.floor((v.giay||0)/60), gy = (v.giay||0)%60;
+  o.hidden = false;
+  o.innerHTML = `<div class="nen-bao">
+    <span>Đang chạy nền — đóng trang này hay tắt máy tính vẫn không sao,
+    việc vẫn chạy tiếp. Mở lại là thấy tiến độ.</span>
+    <span class="dong-ho">${ph}p ${String(gy).padStart(2,'0')}s</span></div>`;
+}
+
+/* ---------------- thao tác ---------------- */
+document.addEventListener('click', async e => {
+  const t = e.target;
+
+  const mo = t.closest('[data-mo]');
+  if(mo && !t.closest('button,input,audio')){
+    const id = mo.dataset.mo;
+    MO.has(id) ? MO.delete(id) : MO.add(id);
+    mo.closest('.canh').classList.toggle('mo');
+    return;
+  }
+  if(t.dataset.chay) return chay(t.dataset.chay, t.dataset.canh);
+  if(t.dataset.xem){
+    const o = $('#o-ket-qua');
+    o.innerHTML = `<video controls autoplay src="/media/clip/${encodeURIComponent(t.dataset.xem)}.mp4?v=${Date.now()}"></video>`;
+    $('#dai-video').textContent = t.dataset.xem;
+    veKetQua.ghim = true;   // dang xem clip le -> dung tu doi sang video cuoi
+    o.scrollIntoView({behavior:'smooth', block:'nearest'});
+    return;
+  }
+  if(t.dataset.xoa !== undefined){
+    TT.canh.splice(+t.dataset.xoa, 1); BAN = true; $('#nut-luu').disabled = false; veCanh(); return;
+  }
+});
+
+document.addEventListener('input', e => {
+  const t = e.target;
+  if(t.dataset.o === undefined) return;
+  TT.canh[+t.dataset.o][t.dataset.k] = t.value;
+  BAN = true; $('#nut-luu').disabled = false;
+});
+
+$('#nut-them').onclick = () => {
+  const n = (TT.canh?.length || 0) + 1;
+  const id = 'canh_' + String(n).padStart(2, '0');
+  TT.canh.push({id, anh: id + '.png', thoai: '', cam_xuc: 'binh_thuong', ghi_chu: '',
+                kieu: (TT.cau_hinh && TT.cau_hinh.kieu_mac_dinh) || 'ken_burns',
+                co_thoai:false, co_anh:false, co_tieng:false, co_clip:false});
+  MO.add(id); BAN = true; $('#nut-luu').disabled = false; veCanh();
+};
+
+async function luuKichBan(){
+  const d = {ten_video: TT.ten_video, cau_hinh: TT.cau_hinh,
+             canh: TT.canh.map(c => ({id:c.id, anh:c.anh, thoai:c.thoai,
+                                      cam_xuc:c.cam_xuc, kieu:c.kieu,
+                                      ghi_chu:c.ghi_chu}))};
+  const r = await fetch('/api/kich-ban', {method:'POST',
+    headers:{'Content-Type':'application/json'}, body: JSON.stringify(d)});
+  if(!r.ok){ them('e', 'Lưu thất bại: ' + (await r.json()).detail); return false; }
+  tai(); return true;
+}
+
+$('#nut-luu').onclick = async () => {
+  if(await luuKichBan()){
+    BAN = false; $('#nut-luu').disabled = true;
+    them('x', 'Đã lưu kịch bản.');
+  }
+};
+
+$('#dau-ket-qua').onclick = () => { veKetQua.ghim = false; veKetQua.ky = null; tai(); };
+$('#nut-chay').onclick = () => chay('tat_ca');
+$('#nut-dung').onclick = () => fetch('/api/dung', {method:'POST'});
+$('#nut-lam-lai').onclick = () => {
+  if(confirm('Làm lại từ đầu: ghi đè mọi file tiếng và clip đã có. Tiếp tục?'))
+    chay('tat_ca', null, true);
+};
+
+async function chay(buoc, canh, lamLai){
+  if(BAN && !confirm('Kịch bản có thay đổi chưa lưu. Vẫn chạy?')) return;
+  const r = await fetch('/api/chay/' + buoc, {method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({canh: canh || null, lam_lai: !!lamLai})});
+  if(!r.ok) them('e', 'Không chạy được: ' + ((await r.json()).detail || r.status));
+  else { $('#nhatky').textContent = ''; tai(); }
+}
+
+/* ---------------- tải file lên ---------------- */
+function noiTha(oId, inputId, loai){
+  const o = $('#' + oId), inp = $('#' + inputId);
+  o.onclick = () => inp.click();
+  inp.onchange = () => guiFile(loai, inp.files);
+  ['dragenter','dragover'].forEach(n => o.addEventListener(n, e => {
+    e.preventDefault(); o.classList.add('tren'); }));
+  ['dragleave','drop'].forEach(n => o.addEventListener(n, e => {
+    e.preventDefault(); o.classList.remove('tren'); }));
+  o.addEventListener('drop', e => guiFile(loai, e.dataTransfer.files));
+}
+async function guiFile(loai, files){
+  if(!files || !files.length) return;
+  const fd = new FormData();
+  [...files].forEach(f => fd.append('files', f));
+  const r = await fetch('/api/tai-len/' + loai, {method:'POST', body: fd});
+  const d = await r.json();
+  them(r.ok ? 'x' : 'e', r.ok ? ('Đã nhận: ' + d.file.join(', ')) : ('Lỗi: ' + d.detail));
+  tai();
+}
+noiTha('tha-anh', 'chon-anh', 'canh');
+noiTha('tha-giong', 'chon-giong', 'giong_mau');
+noiTha('tha-kb', 'chon-kb', 'kich_ban');
+
+/* ---------------- nhật ký ---------------- */
+const NK = $('#nhatky');
+function them(lop, s){
+  const e = document.createElement('span');
+  e.className = lop; e.textContent = s + '\n';
+  NK.appendChild(e);
+  NK.scrollTop = NK.scrollHeight;
+}
+function lopCua(s){
+  if(/LOI|Traceback|Error|error|that bai/.test(s)) return 'e';
+  if(/XONG|xong|HOAN TAT|->/.test(s)) return 'x';
+  if(/^\[|^==|^\$/.test(s)) return 'n';
+  return '';
+}
+// tu=0 -> server phat lai TOAN BO log cua viec dang chay, nen mo trang giua
+// chung van thay day du chu khong chi thay phan tu luc mo tro di.
+const es = new EventSource('/api/log?tu=0');
+es.onopen = () => { NK.textContent = ''; };
+es.onmessage = e => { const s = JSON.parse(e.data); them(lopCua(s), s); };
+es.addEventListener('trang_thai', e => {
+  const d = JSON.parse(e.data);
+  if(TT && TT.viec.dang_chay !== d.dang_chay) tai();
+  if(TT) TT.viec = {...TT.viec, ...d};
+});
+
+tai();
+setInterval(() => { if(!BAN) tai(); }, 6000);
+</script>
+</body>
+</html>

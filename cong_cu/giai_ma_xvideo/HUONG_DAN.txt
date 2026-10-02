@@ -1,0 +1,19 @@
+GIẢI MÃ BRD → MP4
+
+Windows: cài Python 3 từ python.org (bao gồm Tcl/Tk và Python Launcher).
+Giải nén tool, mở MO_CONG_CU_WINDOWS.bat. Lần đầu cần mạng để cài cryptography.
+Chọn thư mục chứa .brd hoặc file ZIP, chọn nơi lưu MP4, nhập key
+(hoặc mở file video.key), bấm Giải mã thành MP4. Sau khi cài thư viện,
+việc giải mã chạy hoàn toàn offline. Giữ nguyên cấu trúc thư mục con.
+
+Linux/macOS: python3 -m pip install -r requirements.txt
+Giao diện: python3 giai_ma.py (cần Tkinter).
+Dòng lệnh: python3 giai_ma.py /duong/dan/thu_muc --output /noi/luu/mp4
+Hoặc: python3 giai_ma.py video.zip --output mp4 --key-file /noi/rieng/video.key
+Không truyền key trực tiếp trên dòng lệnh; khi không có --key-file tool sẽ hỏi.
+
+Tool không ghi đè MP4 có sẵn. Sai key hoặc dữ liệu hỏng sẽ báo lỗi.
+Mỗi file được kiểm tra toàn vẹn xong mới xuất tên .mp4 chính thức.
+Nếu có lỗi giữa một lô, các file hoàn tất trước đó vẫn còn tại thư mục đích.
+ZIP chỉ chứa dữ liệu mã hóa; key phải được nhận riêng từ chủ máy.
+Không gửi key kèm ZIP. Mất key thì không khôi phục được video.

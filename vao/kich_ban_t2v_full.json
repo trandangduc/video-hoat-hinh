@@ -1,0 +1,64 @@
+{
+  "ten_video": "Dyatlov — T2V tu ve toan bo (bang trang, khong anh mau)",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": false,
+    "kieu_mac_dinh": "t2v",
+    "phong_cach_t2v": "hand-drawn documentary animation in thick black marker on plain cream paper, bold confident ink strokes, simple rounded human figures with a clear head, torso, arms and legs, figures large in frame and close to camera, strong black-on-pale contrast, minimal background texture"
+  },
+  "canh": [
+    {
+      "id": "t2v_01",
+      "anh": "canh_01.png",
+      "thoai": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain.",
+      "cam_xuc": "trang_trong",
+      "kieu": "t2v",
+      "ghi_chu": "a line of people hiking up a snow-covered mountain ridge at twilight, seen close from behind, tents pitched on the slope ahead",
+      "_timecode": "00:00-00:07",
+      "_giay_du_kien": 7
+    },
+    {
+      "id": "t2v_02",
+      "anh": "canh_02.png",
+      "thoai": "They cut open their own tent — from the inside — and fled into the freezing night, with temperatures dropping to minus thirty degrees.",
+      "cam_xuc": "cang_thang",
+      "kieu": "t2v",
+      "ghi_chu": "inside a tent at night, one person seen close up slashing the tent fabric open with a knife, two others scrambling out behind, snow blowing in",
+      "_timecode": "00:07-00:15",
+      "_giay_du_kien": 8
+    },
+    {
+      "id": "t2v_03",
+      "anh": "canh_03.png",
+      "thoai": "No shoes. No coats. Some were wearing only socks. One was even completely barefoot.",
+      "cam_xuc": "hoi_hop",
+      "kieu": "t2v",
+      "ghi_chu": "people running barefoot down a snowy slope at night, seen close up, footprints filling with snow, flashlight beams sweeping across dark trees",
+      "_timecode": "00:15-00:22",
+      "_giay_du_kien": 7
+    },
+    {
+      "id": "t2v_04",
+      "anh": "canh_04.png",
+      "thoai": "Nine days later, search teams finally discovered the tent. It would take nearly three more months to find the last body.",
+      "cam_xuc": "buon",
+      "kieu": "t2v",
+      "ghi_chu": "a search team with flashlights standing over the collapsed tent half buried in snow, seen close up, one person kneeling to look inside",
+      "_timecode": "00:22-00:30",
+      "_giay_du_kien": 8
+    },
+    {
+      "id": "t2v_05",
+      "anh": "canh_05.png",
+      "thoai": "And more than sixty years later, even the Russian government still cannot say with certainty what drove nine highly trained hikers to slash open their tent and run barefoot into the darkness — never to return.",
+      "cam_xuc": "trang_trong",
+      "kieu": "t2v",
+      "ghi_chu": "five wooden grave markers on a snowy hill, one person kneeling close to camera placing flowers, snow falling steadily",
+      "_timecode": "00:30-00:44",
+      "_giay_du_kien": 14
+    }
+  ]
+}

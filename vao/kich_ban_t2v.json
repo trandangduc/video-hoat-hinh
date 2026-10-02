@@ -1,0 +1,23 @@
+{
+  "ten_video": "Thu T2V — tu ve bang trang, khong dung anh mau",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": true,
+    "kieu_mac_dinh": "t2v"
+  },
+  "canh": [
+    {
+      "id": "t2v_01",
+      "anh": "canh_01.png",
+      "thoai": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain.",
+      "cam_xuc": "trang_trong",
+      "kieu": "t2v",
+      "ghi_chu": "",
+      "_timecode": "00:00-00:10",
+      "_giay_du_kien": 10
+    }
+  ]
+}

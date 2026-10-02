@@ -1,0 +1,19 @@
+# bi mat
+.bao_mat/
+*.key
+# moi truong, model, ComfyUI (cai rieng theo README)
+.venv/
+ComfyUI/
+models/
+cong_cu/bin/
+# dau ra, log, du lieu ca nhan
+ra/
+logs/
+vao/**/*.png
+vao/**/*.mp4
+vao/**/*.wav
+vao/*.mp4
+vao/*.wav
+New Microsoft Word Document.docx
+__pycache__/
+*.pyc

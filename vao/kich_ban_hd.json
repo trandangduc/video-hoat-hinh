@@ -1,0 +1,25 @@
+{
+  "ten_video": "Dyatlov - S2V 720p",
+  "cau_hinh": {
+    "fps": 16,
+    "rong": 960,
+    "cao": 544,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": true,
+    "kieu_mac_dinh": "ken_burns"
+  },
+  "canh": [
+    {
+      "id": "hd_01",
+      "anh": "hd_01.png",
+      "thoai": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain.",
+      "cam_xuc": "trang_trong",
+      "kieu": "s2v",
+      "ghi_chu": "cartoon narrator speaking to camera, subtle natural head motion, clean flat vector art style, crisp black outlines, steady shot",
+      "_timecode": "00:00-00:07",
+      "_giay_du_kien": 7,
+      "nguoi_dan": false,
+      "cu_may": []
+    }
+  ]
+}

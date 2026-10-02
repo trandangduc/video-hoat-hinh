@@ -1,0 +1,295 @@
+{
+ "10": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "11": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+   "type": "ltxv",
+   "device": "default"
+  }
+ },
+ "12": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+  }
+ },
+ "13": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "ltx-2.5-audio-vae-bf16.safetensors"
+  }
+ },
+ "20": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "PLACEHOLDER_ANH"
+  }
+ },
+ "21": {
+  "class_type": "LTXVPreprocess",
+  "inputs": {
+   "image": [
+    "20",
+    0
+   ],
+   "img_compression": 5
+  }
+ },
+ "30": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "11",
+    0
+   ],
+   "text": "PLACEHOLDER_PROMPT"
+  }
+ },
+ "31": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "11",
+    0
+   ],
+   "text": "PLACEHOLDER_NEGATIVE"
+  }
+ },
+ "32": {
+  "class_type": "LTXVConditioning",
+  "inputs": {
+   "positive": [
+    "30",
+    0
+   ],
+   "negative": [
+    "31",
+    0
+   ],
+   "frame_rate": 24.0
+  }
+ },
+ "40": {
+  "class_type": "EmptyLTXVLatentVideo",
+  "inputs": {
+   "width": 1280,
+   "height": 720,
+   "length": 97,
+   "batch_size": 1
+  }
+ },
+ "41": {
+  "class_type": "LTXVImgToVideoInplace",
+  "inputs": {
+   "vae": [
+    "12",
+    0
+   ],
+   "image": [
+    "21",
+    0
+   ],
+   "latent": [
+    "40",
+    0
+   ],
+   "strength": 1.0,
+   "bypass": false
+  }
+ },
+ "42": {
+  "class_type": "LTXVEmptyLatentAudio",
+  "inputs": {
+   "audio_vae": [
+    "13",
+    0
+   ],
+   "frames_number": 97,
+   "frame_rate": 24.0,
+   "batch_size": 1
+  }
+ },
+ "43": {
+  "class_type": "LTXVConcatAVLatent",
+  "inputs": {
+   "video_latent": [
+    "41",
+    0
+   ],
+   "audio_latent": [
+    "42",
+    0
+   ]
+  }
+ },
+ "50": {
+  "class_type": "LTXVDualCFGGuider",
+  "inputs": {
+   "model": [
+    "26",
+    0
+   ],
+   "positive": [
+    "26",
+    1
+   ],
+   "negative": [
+    "26",
+    2
+   ],
+   "video_cfg": 3.0,
+   "audio_cfg": 7.0
+  }
+ },
+ "51": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 1234
+  }
+ },
+ "52": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "euler_ancestral"
+  }
+ },
+ "53": {
+  "class_type": "LTXVScheduler",
+  "inputs": {
+   "steps": 30,
+   "max_shift": 2.05,
+   "base_shift": 0.95,
+   "stretch": true,
+   "terminal": 0.1,
+   "latent": [
+    "43",
+    0
+   ]
+  }
+ },
+ "54": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "51",
+    0
+   ],
+   "guider": [
+    "50",
+    0
+   ],
+   "sampler": [
+    "52",
+    0
+   ],
+   "sigmas": [
+    "53",
+    0
+   ],
+   "latent_image": [
+    "43",
+    0
+   ]
+  }
+ },
+ "60": {
+  "class_type": "LTXVSeparateAVLatent",
+  "inputs": {
+   "av_latent": [
+    "54",
+    0
+   ]
+  }
+ },
+ "61": {
+  "class_type": "VAEDecodeTiled",
+  "inputs": {
+   "samples": [
+    "60",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ],
+   "tile_size": 512,
+   "overlap": 64,
+   "temporal_size": 64,
+   "temporal_overlap": 16
+  }
+ },
+ "70": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "61",
+    0
+   ],
+   "filename_prefix": "PLACEHOLDER_PREFIX"
+  }
+ },
+ "62": {
+  "class_type": "LTXVAudioVAEDecode",
+  "inputs": {
+   "samples": [
+    "60",
+    1
+   ],
+   "audio_vae": [
+    "13",
+    0
+   ]
+  }
+ },
+ "71": {
+  "class_type": "SaveAudio",
+  "inputs": {
+   "audio": [
+    "62",
+    0
+   ],
+   "filename_prefix": "PLACEHOLDER_PREFIX_audio"
+  }
+ },
+ "25": {
+  "class_type": "LoadAudio",
+  "inputs": {
+   "audio": "giong_chuan.wav"
+  }
+ },
+ "26": {
+  "class_type": "LTXVReferenceAudio",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "positive": [
+    "32",
+    0
+   ],
+   "negative": [
+    "32",
+    1
+   ],
+   "reference_audio": [
+    "25",
+    0
+   ],
+   "audio_vae": [
+    "13",
+    0
+   ],
+   "identity_guidance_scale": 3.0,
+   "start_percent": 0.0,
+   "end_percent": 1.0
+  }
+ }
+}

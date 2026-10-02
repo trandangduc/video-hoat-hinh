@@ -1,0 +1,33 @@
+{
+  "ten_video": "Vi du 3 canh",
+  "cau_hinh": {
+    "fps": 16,
+    "rong": 832,
+    "cao": 480,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": true
+  },
+  "canh": [
+    {
+      "id": "canh_01",
+      "anh": "canh_01.png",
+      "thoai": "I have been waiting for this moment my whole life. Today, everything changes.",
+      "cam_xuc": "hoi_hop",
+      "ghi_chu": "Nhan vat nhin thang vao ong kinh, camera nhich toi rat cham, anh sang am."
+    },
+    {
+      "id": "canh_02",
+      "anh": "canh_02.png",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "ghi_chu": "Canh rong khong thoai: may troi qua thanh pho luc hoang hon, camera lia sang phai."
+    },
+    {
+      "id": "canh_03",
+      "anh": "canh_03.png",
+      "thoai": "So this is where the road ends. And where the real story finally begins.",
+      "cam_xuc": "nhe_nhang",
+      "ghi_chu": "Nhan vat quay nguoi buoc di, gio thoi nhe qua toc, camera giu nguyen."
+    }
+  ]
+}

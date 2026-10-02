@@ -1,0 +1,22 @@
+{
+  "ten_video": "Thu collage t2v",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": false,
+    "kieu_mac_dinh": "t2v",
+    "phong_cach_t2v": "vintage sepia and black-and-white collage, torn paper edges, handwritten notes in the margins, old scientific illustrations, film grain, slow camera push-in"
+  },
+  "canh": [
+    {
+      "id": "collage_t2v",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an old black-and-white photograph pinned at the centre of the collage showing a group of hikers in heavy winter coats and backpacks trudging through deep snow toward the camera, large and clearly visible, periodic table and pencil sketches of mountains around the photo"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# ep torch len ban co kernel sm_120 (Blackwell / RTX 5090).
+# chatterbox-tts ghim torch==2.6.0 -> KHONG chay duoc tren GPU nay.
+torch>=2.7.0
+torchaudio>=2.7.0

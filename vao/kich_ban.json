@@ -1,0 +1,98 @@
+{
+  "ten_video": "Dyatlov - LTX (cong thuc ban tot nhat)",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1920,
+    "cao": 1088,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": false,
+    "kieu_mac_dinh": "ltx"
+  },
+  "canh": [
+    {
+      "id": "canh_01",
+      "anh": "canh_01.png",
+      "thoai": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain.",
+      "cam_xuc": "trang_trong",
+      "kieu": "ltx",
+      "ghi_chu": "",
+      "_timecode": "00:00-00:07",
+      "_giay_du_kien": 7,
+      "nguoi_dan": true,
+      "cu_may": [
+        {
+          "ta": "in a 1950s archive room in front of a wall map",
+          "_loi": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain."
+        }
+      ]
+    },
+    {
+      "id": "canh_02",
+      "anh": "canh_02.png",
+      "thoai": "They cut open their own tent — from the inside — and fled into the freezing night, with temperatures dropping to minus thirty degrees.",
+      "cam_xuc": "trang_trong",
+      "kieu": "ltx",
+      "ghi_chu": "",
+      "_timecode": "00:07-00:15",
+      "_giay_du_kien": 8,
+      "nguoi_dan": true,
+      "cu_may": [
+        {
+          "ta": "in a 1950s archive room beside an equipment crate, holding a brass compass",
+          "_loi": "They cut open their own tent — from the inside — and fled into the freezing night, with temperatures dropping to minus thirty degrees."
+        }
+      ]
+    },
+    {
+      "id": "canh_03",
+      "anh": "canh_03.png",
+      "thoai": "No shoes. No coats. Some were wearing only socks. One was even completely barefoot.",
+      "cam_xuc": "trang_trong",
+      "kieu": "ltx",
+      "ghi_chu": "",
+      "_timecode": "00:15-00:22",
+      "_giay_du_kien": 7,
+      "nguoi_dan": true,
+      "cu_may": [
+        {
+          "ta": "standing in deep snow beside a collapsed torn tent, light snow falling",
+          "_loi": "No shoes. No coats. Some were wearing only socks. One was even completely barefoot."
+        }
+      ]
+    },
+    {
+      "id": "canh_04",
+      "anh": "canh_04.png",
+      "thoai": "Nine days later, search teams finally discovered the tent. It would take nearly three more months to find the last body.",
+      "cam_xuc": "trang_trong",
+      "kieu": "ltx",
+      "ghi_chu": "",
+      "_timecode": "00:22-00:30",
+      "_giay_du_kien": 8,
+      "nguoi_dan": true,
+      "cu_may": [
+        {
+          "ta": "crouching in the snow holding a glowing oil lantern, light snow falling",
+          "_loi": "Nine days later, search teams finally discovered the tent. It would take nearly three more months to find the last body."
+        }
+      ]
+    },
+    {
+      "id": "canh_05",
+      "anh": "canh_05.png",
+      "thoai": "And more than sixty years later, even the Russian government still cannot say with certainty what drove nine highly trained hikers to slash open their tent and run barefoot into the darkness — never to return.",
+      "cam_xuc": "trang_trong",
+      "kieu": "ltx",
+      "ghi_chu": "",
+      "_timecode": "00:30-00:44",
+      "_giay_du_kien": 14,
+      "nguoi_dan": true,
+      "cu_may": [
+        {
+          "ta": "standing in the snow holding an old document, wooden grave markers behind him",
+          "_loi": "And more than sixty years later, even the Russian government still cannot say with certainty what drove nine highly trained hikers to slash open their tent and run barefoot into the darkness — never to return."
+        }
+      ]
+    }
+  ]
+}

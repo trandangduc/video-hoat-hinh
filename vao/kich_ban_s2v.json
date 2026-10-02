@@ -1,0 +1,33 @@
+{
+  "ten_video": "Dyatlov - ban S2V khop mieng",
+  "cau_hinh": {
+    "fps": 16,
+    "rong": 832,
+    "cao": 480,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": true,
+    "kieu_mac_dinh": "ken_burns"
+  },
+  "canh": [
+    {
+      "id": "s2v_01",
+      "anh": "s2v_01.png",
+      "thoai": "On the night of February 1st, 1959, nine experienced hikers did something that, to this day, no one can fully explain.",
+      "cam_xuc": "trang_trong",
+      "kieu": "s2v",
+      "ghi_chu": "cartoon narrator speaking to camera, subtle head movement, steady shot, consistent character",
+      "_timecode": "00:00-00:07",
+      "_giay_du_kien": 7
+    },
+    {
+      "id": "s2v_03",
+      "anh": "s2v_03.png",
+      "thoai": "No shoes. No coats. Some were wearing only socks. One was even completely barefoot.",
+      "cam_xuc": "trang_trong",
+      "kieu": "s2v",
+      "ghi_chu": "cartoon narrator speaking to camera, subtle head movement, steady shot, consistent character",
+      "_timecode": "00:15-00:22",
+      "_giay_du_kien": 7
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "ten_video": "Collage Dyatlov",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 2.7,
+    "phu_de": false,
+    "kieu_mac_dinh": "t2v",
+    "phong_cach_t2v": "vintage sepia and black-and-white collage, torn paper edges, handwritten notes, old scientific illustrations, film grain texture"
+  },
+  "canh": [
+    {
+      "id": "collage_01",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "a vintage collage of a scientist's desk, glowing Edison light bulbs hanging from above, an antique brass microscope, a periodic table chart, handwritten notes and botanical pencil sketches pinned on torn paper, slow camera pan across the collage",
+      "giay_du_kien": 2.7
+    },
+    {
+      "id": "collage_02",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an old photograph pinned among torn notebook pages showing six hikers in heavy winter jackets and large backpacks walking through deep snow toward the camera, hikers large and clearly visible in the centre, camera slowly pushes in",
+      "giay_du_kien": 2.7
+    },
+    {
+      "id": "collage_03",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an old photograph of the interior of an abandoned wooden log cabin with a small iron stove and a bench, pinned on a collage of old maps, temperature graphs and pencil sketches of mountains, slow camera push-in",
+      "giay_du_kien": 2.7
+    },
+    {
+      "id": "collage_04",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "a large anatomical pencil illustration of a human foot skeleton on aged torn paper, faded handwritten notes around it, slow camera drift",
+      "giay_du_kien": 2.7
+    }
+  ]
+}

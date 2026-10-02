@@ -1,0 +1,21 @@
+{
+  "ten_video": "Thu collage i2v",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 5,
+    "phu_de": false,
+    "kieu_mac_dinh": "ltx"
+  },
+  "canh": [
+    {
+      "id": "collage_i2v",
+      "anh": "collage_i2v.png",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "ltx",
+      "ghi_chu": "slow camera push-in toward the pinned photograph, the hikers in the photo keep trudging through the snow, torn paper edges flutter slightly, vintage sepia collage, film grain flicker"
+    }
+  ]
+}

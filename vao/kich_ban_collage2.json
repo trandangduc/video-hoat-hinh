@@ -1,0 +1,68 @@
+{
+  "ten_video": "Collage Dyatlov (phan 2)",
+  "cau_hinh": {
+    "fps": 24,
+    "rong": 1280,
+    "cao": 704,
+    "giay_canh_khong_thoai": 1.3,
+    "phu_de": false,
+    "kieu_mac_dinh": "t2v",
+    "phong_cach_t2v": "vintage sepia and black-and-white collage, torn paper edges, handwritten notes, old scientific illustrations, full-frame composition filling the whole image edge to edge"
+  },
+  "canh": [
+    {
+      "id": "collage_05",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an old hand-drawn expedition map on aged paper, a dotted trail winding between pencil-sketched mountains, a compass rose and small camp markers, slow camera pan",
+      "giay_du_kien": 1.3
+    },
+    {
+      "id": "collage_06",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "a pencil sketch of a small A-frame tent with a long slash cut in its fabric, pinned beside old leather-bound books and typed report pages, slow camera push-in",
+      "giay_du_kien": 1.3
+    },
+    {
+      "id": "collage_07",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "old black-and-white photographs of worn leather hiking boots and patched wool socks pinned on a collage beside a small chalkboard with sketches, slow camera drift",
+      "giay_du_kien": 1.3
+    },
+    {
+      "id": "collage_08",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an antique desk collage with a human skull resting on a stack of old books, hand-drawn graphs and bone sketches pinned on torn paper, glowing Edison bulbs above, slow pan",
+      "giay_du_kien": 1.3
+    },
+    {
+      "id": "collage_09",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "an old black-and-white photograph of three hikers in silhouette climbing a steep snowy mountain slope in a blizzard, torn paper edges around the photo, slow push-in",
+      "giay_du_kien": 1.3
+    },
+    {
+      "id": "collage_10",
+      "anh": "",
+      "thoai": "",
+      "cam_xuc": "binh_thuong",
+      "kieu": "t2v",
+      "ghi_chu": "a vintage chalkboard covered in chemistry formulas and a benzene ring diagram beside glass flasks and beakers of dark liquid and a periodic table chart, slow camera push-in",
+      "giay_du_kien": 1.3
+    }
+  ]
+}
